@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers List</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Container -->
+    <div
+      class="container container-fluid mt-5"
+      style="height: 100vh; padding: 3vh"
+    >
+      <!-- Card -->
+      <div class="card card" style="padding: 7vh; height: 100%">
+        <!-- Card -->
+        <div class="card p-4 shadow" style="height: 100%">
+          <!-- List Toolbar -->
+          <div class="card p-2 mb-0" style="border: 0cap; height: 15%">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <!-- Header -->
+              <h4 class="text-dark">Customers</h4>
+              <!-- Add BTN -->
+              <button class="btn btn-primary border">Add Customer</button>
+            </div>
+            <!-- Search Field -->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              style="width: 30%"
+            />
+          </div>
+          <!-- Table Card -->
+          <div
+            class="card p-2"
+            style="display: flex; height: 75%; border: 0cap"
+          >
+            <!-- Table Responsive -->
+            <div
+              class="table-responsive"
+              style="height: 100%; overflow-y: auto"
+            >
+              <!-- Table -->
+              <table class="table table-striped table-bordered table-hover">
+                <!-- Table Header -->
+                <thead
+                  class="primary shadow-sm"
+                  style="position: sticky; z-index: 1; top: 0"
+                >
+                  <tr class="">
+                    <th style="text-align: center" class="text-dark">#</th>
+                    <th style="text-align: center" class="text-dark">Name</th>
+                    <th style="text-align: center" class="text-dark">Family</th>
+                    <th style="text-align: center" class="text-dark">Email</th>
+                    <th style="text-align: center" class="text-dark">Phone</th>
+                  </tr>
+                </thead>
+                <!-- Table Body -->
+                <tbody style="overflow: scroll" id="customerTableBody">
+                  <!-- Rows will be inserted dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Tabel Footer -->
+          <div class="card p-2" style="height: 20%; border: 0cap">
+            <!-- Export Button -->
+            <div class="text-end">
+              <button class="btn btn-light border">Export List</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- listOfData.js -->
+    <script src="listOfData.js"></script>
+  </body>
+</html>
