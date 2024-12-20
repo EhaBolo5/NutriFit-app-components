@@ -37,13 +37,62 @@ th,
 td {
   text-align: center;
 }
-td{
-    cursor: pointer;
+td {
+  cursor: pointer;
 }
 #customersTableBody {
   overflow: scroll;
 }
-#listFooterCard{
-    height: 10%;
-    border: 0cap;
+#listFooterCard {
+  height: 10%;
+  border: 0cap;
+}
+/* Overlay styles */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  display: none; /* Initially hidden */
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 10px; /* Optional: to ensure it doesn't touch the edges */
+}
+
+/* Centered form style */
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Customer table card positioning */
+.card {
+  position: relative; /* Ensures the overlay is positioned relative to this card */
+}
+
+#searchInput {
+  width: 30%;
+}
+#mainCard {
+  padding: 7vh;
+}
+
+/* Error Message Styling */
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+/* Alert box */
+.alert-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
