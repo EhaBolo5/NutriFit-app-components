@@ -142,16 +142,16 @@ let customers = [
       },
     // Additional customers omitted for brevity...
   ];
-  
+
   // Get table body element
   const tableBody = document.getElementById("customersTableBody");
-  
+
   // Function to render the customer table
   function renderCustomerTable() {
     tableBody.innerHTML = ""; // Clear the existing table content
-  
+
     const sortedCustomers = customers.sort((a, b) => b.id - a.id); // Sort customers by id in descending order
-  
+
     sortedCustomers.forEach((customer) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -164,7 +164,7 @@ let customers = [
       tableBody.appendChild(row);
     });
   }
-  
+
   // Function to add a new customer
   function addCustomer(name, family, email, phone) {
     const newCustomer = {
@@ -174,14 +174,13 @@ let customers = [
       email: email,
       phone: phone,
     };
-  
+
     customers.push(newCustomer); // Add the new customer to the list
     renderCustomerTable(); // Re-render the customer table with the new customer
   }
-  
+
   // Initial rendering of the customer table
   renderCustomerTable();
-  
+
   // Expose the addCustomer function globally
   window.addCustomer = addCustomer;
-  
