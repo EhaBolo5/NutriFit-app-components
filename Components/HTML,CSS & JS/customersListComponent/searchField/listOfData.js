@@ -20,7 +20,7 @@ const customers = [
     { id: 19, name: "Alexander", family: "Harris", email: "alexander.harris19@example.com", phone: "+972-501223344" },
     { id: 20, name: "Charlotte", family: "King", email: "charlotte.king20@example.com", phone: "+972-502334455" }
   ];
-const tableBody = document.getElementById("customerTableBody");
+const tableBody = document.getElementById("customersTableBody");
 
 customers.forEach((customer) => {
   const row = document.createElement("tr");

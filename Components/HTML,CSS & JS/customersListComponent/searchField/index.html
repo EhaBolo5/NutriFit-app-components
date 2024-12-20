@@ -35,6 +35,8 @@
               class="form-control"
               placeholder="Search"
               style="width: 30%"
+              id="searchInput"
+              onkeyup="filterTable()"
             />
           </div>
           <!-- Table Card -->
@@ -63,14 +65,25 @@
                   </tr>
                 </thead>
                 <!-- Table Body -->
-                <tbody style="overflow: scroll" id="customerTableBody">
+                <tbody style="overflow: scroll" id="customersTableBody">
                   <!-- Rows will be inserted dynamically -->
                 </tbody>
               </table>
+              <!-- Alert Box -->
+              <div
+              id="alertBox"
+              class="alert alert-warning d-none"
+              role="alert"
+            >
+              No records were found for the string "<span
+                id="searchString"
+              ></span
+              >"
+           </div>
             </div>
           </div>
           <!-- Tabel Footer -->
-          <div class="card p-2" style="height: 20%; border: 0cap">
+          <div class="card p-2" style="height: 10%; border: 0cap">
             <!-- Export Button -->
             <div class="text-end">
               <button class="btn btn-light border">Export List</button>
@@ -84,5 +97,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- listOfData.js -->
     <script src="listOfData.js"></script>
+    <!-- searchFunc.js -->
+    <script src="searchFunc.js"></script>
   </body>
 </html>
