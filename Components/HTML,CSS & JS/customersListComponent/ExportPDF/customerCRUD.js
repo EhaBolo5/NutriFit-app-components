@@ -1,185 +1,3 @@
-// let customers = [
-//   {
-//     id: 1,
-//     name: "John",
-//     family: "Doe",
-//     email: "john.doe1@example.com",
-//     phone: "+972-501234567",
-//     birthday: "15/06/1990",
-//     address: "123 Main St, Cityville",
-//   },
-//   {
-//     id: 2,
-//     name: "Jane",
-//     family: "Smith",
-//     email: "jane.smith2@example.com",
-//     phone: "+972-502345678",
-//     birthday: "08/09/1995",
-//     address: "456 Elm St, Townsville",
-//   },
-//   {
-//     id: 3,
-//     name: "Bob",
-//     family: "Brown",
-//     email: "bob.brown3@example.com",
-//     phone: "+972-503456789",
-//     birthday: "22/11/1990",
-//     address: "789 Oak St, Villagetown",
-//   },
-//   {
-//     id: 4,
-//     name: "Alice",
-//     family: "Johnson",
-//     email: "alice.johnson4@example.com",
-//     phone: "+972-504567890",
-//     birthday: "14/05/1993",
-//     address: "321 Maple Ave, Suburbia",
-//   },
-//   {
-//     id: 5,
-//     name: "Michael",
-//     family: "Williams",
-//     email: "michael.williams5@example.com",
-//     phone: "+972-505678901",
-//     birthday: "10/07/1985",
-//     address: "654 Pine Rd, Uptown",
-//   },
-//   {
-//     id: 6,
-//     name: "Sarah",
-//     family: "Taylor",
-//     email: "sarah.taylor6@example.com",
-//     phone: "+972-506789012",
-//     birthday: "02/03/1992",
-//     address: "987 Cedar Ln, Metrocity",
-//   },
-//   {
-//     id: 7,
-//     name: "Chris",
-//     family: "Evans",
-//     email: "chris.evans7@example.com",
-//     phone: "+972-507890123",
-//     birthday: "18/01/1988",
-//     address: "159 Birch Blvd, Downtown",
-//   },
-//   {
-//     id: 8,
-//     name: "Emma",
-//     family: "Wilson",
-//     email: "emma.wilson8@example.com",
-//     phone: "+972-508901234",
-//     birthday: "30/10/1994",
-//     address: "753 Spruce Dr, Hillview",
-//   },
-//   {
-//     id: 9,
-//     name: "David",
-//     family: "Clark",
-//     email: "david.clark9@example.com",
-//     phone: "+972-509012345",
-//     birthday: "27/08/1987",
-//     address: "852 Poplar Ct, Lakeside",
-//   },
-//   {
-//     id: 10,
-//     name: "Olivia",
-//     family: "Martinez",
-//     email: "olivia.martinez10@example.com",
-//     phone: "+972-501122334",
-//     birthday: "12/12/1999",
-//     address: "951 Aspen Ave, Riverwood",
-//   },
-//   {
-//     id: 11,
-//     name: "James",
-//     family: "Garcia",
-//     email: "james.garcia11@example.com",
-//     phone: "+972-502233445",
-//     birthday: "20/04/1986",
-//     address: "753 Walnut St, Greenwood",
-//   },
-//   {
-//     id: 12,
-//     name: "Sophia",
-//     family: "Anderson",
-//     email: "sophia.anderson12@example.com",
-//     phone: "+972-503344556",
-//     birthday: "11/11/1992",
-//     address: "147 Willow Ln, Meadowbrook",
-//   },
-//   {
-//     id: 13,
-//     name: "Liam",
-//     family: "Thomas",
-//     email: "liam.thomas13@example.com",
-//     phone: "+972-504455667",
-//     birthday: "05/02/1991",
-//     address: "369 Cypress Blvd, Crestview",
-//   },
-//   {
-//     id: 14,
-//     name: "Ava",
-//     family: "Lee",
-//     email: "ava.lee14@example.com",
-//     phone: "+972-505566778",
-//     birthday: "09/06/1990",
-//     address: "753 Laurel St, Forest Hills",
-//   },
-//   {
-//     id: 15,
-//     name: "Noah",
-//     family: "Walker",
-//     email: "noah.walker15@example.com",
-//     phone: "+972-506677889",
-//     birthday: "01/08/1989",
-//     address: "963 Chestnut Ave, Bayview",
-//   },
-//   {
-//     id: 16,
-//     name: "Isabella",
-//     family: "Hall",
-//     email: "isabella.hall16@example.com",
-//     phone: "+972-507788990",
-//     birthday: "22/03/1998",
-//     address: "852 Magnolia Dr, Woodside",
-//   },
-//   {
-//     id: 17,
-//     name: "Ethan",
-//     family: "Allen",
-//     email: "ethan.allen17@example.com",
-//     phone: "+972-508899001",
-//     birthday: "17/09/1988",
-//     address: "159 Beech St, Sunnyside",
-//   },
-//   {
-//     id: 18,
-//     name: "Mia",
-//     family: "Young",
-//     email: "mia.young18@example.com",
-//     phone: "+972-509900112",
-//     birthday: "13/07/1993",
-//     address: "147 Aspen Ct, Hillside",
-//   },
-//   {
-//     id: 19,
-//     name: "Alexander",
-//     family: "Harris",
-//     email: "alexander.harris19@example.com",
-//     phone: "+972-501223344",
-//     birthday: "10/01/1984",
-//     address: "321 Elm Dr, Seaview",
-//   },
-//   {
-//     id: 20,
-//     name: "Charlotte",
-//     family: "King",
-//     email: "charlotte.king20@example.com",
-//     phone: "+972-502334455",
-//     birthday: "18/04/1997",
-//     address: "951 Oak Ave, Riverside",
-//   },
-// ];
 let customers = [
   {
     id: 209765344,
@@ -403,12 +221,14 @@ customerForm.addEventListener("submit", function (event) {
   let isValid = true;
 
   // Example validation for a few fields
+  const id = document.getElementById("id").value.trim();
   const firstName = document.getElementById("firstName").value.trim();
   const family = document.getElementById("family").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
   // Reset previous errors
+  document.getElementById("idError").innerText = "";
   document.getElementById("firstNameError").innerText = "";
   document.getElementById("familyError").innerText = "";
   document.getElementById("emailError").innerText = "";
@@ -416,6 +236,10 @@ customerForm.addEventListener("submit", function (event) {
 
   if (!firstName.match(/^[A-Za-z]+$/)) {
     document.getElementById("firstNameError").innerText = "Invalid first name.";
+    isValid = false;
+  }
+  if (!id.match(/^[0-9]{9}$/)) {
+    document.getElementById("idError").innerText = "Invalid first ID.";
     isValid = false;
   }
   if (!family.match(/^[A-Za-z]+$/)) {
@@ -438,7 +262,7 @@ customerForm.addEventListener("submit", function (event) {
     setTimeout(() => {
       // Add the new customer to the list in b.js
       if (typeof addCustomer === "function") {
-        addCustomer(firstName, family, email, phone); // Add customer to b.js list
+        addCustomer(id, firstName, family, email, phone); // Add customer to b.js list
       }
       successMessage.innerHTML = "The customer was added successfully!";
       successMessage.classList.remove("d-none");
@@ -460,9 +284,58 @@ customerForm.addEventListener("submit", function (event) {
 
 // Get table body element
 const tableBody = document.getElementById("customersTableBody");
+// function renderCustomerTable() {
+//   tableBody.innerHTML = ""; // Clear the existing table content
+//   const sortedCustomers = customers.sort((a, b) => b.id - a.id); // Sort customers by id in descending order
+
+//   sortedCustomers.forEach((customer) => {
+//     const row = document.createElement("tr");
+
+//     row.innerHTML = `
+//         <td>${customer.id}</td>
+//         <td>${customer.name}</td>
+//         <td>${customer.family}</td>
+//         <td>${customer.email}</td>
+//         <td>${customer.phone}</td>
+//       `;
+
+//     // Attach click event to the row
+//     row.addEventListener("click", () => {
+//       overlay.style.display = "flex";
+//       errorBox.classList.add("d-none");
+//       successMessage.classList.add("d-none");
+//       loadingSpinner.classList.add("d-none");
+//       removeBtn.style.display = "block";
+//       formElements.forEach((element) => (element.disabled = false));
+//       formHeaderTxt.innerHTML = customer.name + " " + customer.family;
+//       // Populate form fields
+//       document.querySelector("#id").value = customer.id;
+//       document.querySelector("#firstName").value = customer.name;
+//       document.querySelector("#family").value = customer.family;
+//       document.querySelector("#email").value = customer.email;
+//       document.querySelector("#phone").value = customer.phone;
+//       document.querySelector("#address").value = customer.address;
+//       document.querySelector("#birthday").value = formatDate(customer.birthday);
+//       addCus.style.display = "none";
+//       updateCus.style.display = "flex";
+//       document.getElementById("id").disabled = true;
+
+//       // Store selected customer ID
+//       selectedCustomerId = customer.id;
+//     });
+
+//     tableBody.appendChild(row);
+//   });
+// }
+
+// Date formatting function
+
 function renderCustomerTable() {
   tableBody.innerHTML = ""; // Clear the existing table content
-  const sortedCustomers = customers.sort((a, b) => b.id - a.id); // Sort customers by id in descending order
+
+  // Sort customers by id in descending order
+  // const sortedCustomers = customers.sort((a, b) => b.id - a.id);
+  const sortedCustomers = [...customers].reverse();
 
   sortedCustomers.forEach((customer) => {
     const row = document.createElement("tr");
@@ -473,7 +346,7 @@ function renderCustomerTable() {
         <td>${customer.family}</td>
         <td>${customer.email}</td>
         <td>${customer.phone}</td>
-      `;
+    `;
 
     // Attach click event to the row
     row.addEventListener("click", () => {
@@ -483,7 +356,8 @@ function renderCustomerTable() {
       loadingSpinner.classList.add("d-none");
       removeBtn.style.display = "block";
       formElements.forEach((element) => (element.disabled = false));
-      formHeaderTxt.innerHTML = customer.name + " " + customer.family;
+      formHeaderTxt.innerHTML = `${customer.name} ${customer.family}`;
+
       // Populate form fields
       document.querySelector("#id").value = customer.id;
       document.querySelector("#firstName").value = customer.name;
@@ -492,6 +366,7 @@ function renderCustomerTable() {
       document.querySelector("#phone").value = customer.phone;
       document.querySelector("#address").value = customer.address;
       document.querySelector("#birthday").value = formatDate(customer.birthday);
+
       addCus.style.display = "none";
       updateCus.style.display = "flex";
       document.getElementById("id").disabled = true;
@@ -504,17 +379,16 @@ function renderCustomerTable() {
   });
 }
 
-// Date formatting function
 function formatDate(date) {
   const [day, month, year] = date.split("/");
   return `${year}-${month}-${day}`; // Format to 'yyyy-mm-dd' for date picker
 }
 
 // Function to add a new customer
-function addCustomer(name, family, email, phone) {
+function addCustomer(id, name, family, email, phone) {
   const newCustomer = {
-    id: customers.length + 1, // Assign the next available ID
-    // id: id,
+    // id: customers.length + 1, // Assign the next available ID
+    id: id,
     name: name,
     family: family,
     email: email,
