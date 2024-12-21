@@ -1,7 +1,8 @@
 body {
   padding: 2vh;
 }
-.btn {
+.btn,
+.form-control {
   border-radius: 0.3vh;
 }
 .container {
@@ -148,10 +149,18 @@ td {
   padding: 2vh;
   /* display: none; */
 }
+#exportBtnsContainer {
+  display: flex;
+  justify-content: flex-end;
+}
 @media screen and (max-width: 990px) {
   .btn {
     width: 100%;
     margin-top: 1vh;
+  }
+  .dropdown,
+  .dropdown-menu {
+    width: 100%;
   }
   #searchInput {
     display: block;
@@ -174,7 +183,7 @@ td {
     width: 100%;
   }
   #tableCard {
-    margin-top: 2vh;
+    margin-top: 3vh;
   }
   body {
     padding: 0%;

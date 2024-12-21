@@ -244,11 +244,14 @@
                 <!-- Table Header -->
                 <thead class="primary shadow-sm">
                   <tr class="">
-                    <th class="text-dark">#ID</th>
+                    <th class="text-dark">ID</th>
                     <th class="text-dark">Name</th>
                     <th class="text-dark">Family</th>
                     <th class="text-dark">Email</th>
                     <th class="text-dark">Phone</th>
+                    <th class="text-dark">Birthday</th>
+                    <th class="text-dark">Age</th>
+                    <th class="text-dark">Address</th>
                   </tr>
                 </thead>
                 <!-- Table Body -->
@@ -272,10 +275,43 @@
           <!-- List Footer -->
           <div class="card p-2" id="listFooterCard">
             <!-- Export Button -->
-            <div class="text-end" id="exportBtnContainer">
+            <!-- <div class="text-end" id="exportBtnContainer">
               <button class="btn btn-light border" id="exportBtn">
                 Export PDF
               </button>
+            </div> -->
+            <div id="exportBtnsContainer">
+              <div class="dropdown">
+                <button
+                  class="btn btn-light border"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Export PDF
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <li>
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      id="exportListBTN"
+                    >
+                      Export as LIST
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      class="dropdown-item"
+                      type="button"
+                      id="exportTablesBTN"
+                    >
+                      Export as TABLES
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -293,6 +329,7 @@
     <!-- ExportPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script src="exportPDF.js"></script>
+    <script src="exportPDFTable.js"></script>
+    <script src="exportPDFCustomerTables.js"></script>
   </body>
 </html>

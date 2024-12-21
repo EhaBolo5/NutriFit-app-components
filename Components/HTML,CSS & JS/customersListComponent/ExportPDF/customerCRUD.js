@@ -226,6 +226,12 @@ customerForm.addEventListener("submit", function (event) {
   const family = document.getElementById("family").value.trim();
   const email = document.getElementById("email").value.trim();
   const phone = document.getElementById("phone").value.trim();
+  const birthdayInput = document.getElementById("birthday").value.trim();
+  const address = document.getElementById("address").value.trim();
+
+  // Validate and format birthday
+  const [year, month, day] = birthdayInput.split("-"); // Assuming input is yyyy-mm-dd
+  const birthday = `${day}/${month}/${year}`; // Convert to dd/mm/yyyy
 
   // Reset previous errors
   document.getElementById("idError").innerText = "";
@@ -233,6 +239,8 @@ customerForm.addEventListener("submit", function (event) {
   document.getElementById("familyError").innerText = "";
   document.getElementById("emailError").innerText = "";
   document.getElementById("phoneError").innerText = "";
+  document.getElementById("birthdayError").innerText = "";
+  document.getElementById("addressError").innerText = "";
 
   if (!firstName.match(/^[A-Za-z]+$/)) {
     document.getElementById("firstNameError").innerText = "Invalid first name.";
@@ -262,7 +270,7 @@ customerForm.addEventListener("submit", function (event) {
     setTimeout(() => {
       // Add the new customer to the list in b.js
       if (typeof addCustomer === "function") {
-        addCustomer(id, firstName, family, email, phone); // Add customer to b.js list
+        addCustomer(id, firstName, family, email, birthday, phone, address); // Add customer to b.js list
       }
       successMessage.innerHTML = "The customer was added successfully!";
       successMessage.classList.remove("d-none");
@@ -284,51 +292,6 @@ customerForm.addEventListener("submit", function (event) {
 
 // Get table body element
 const tableBody = document.getElementById("customersTableBody");
-// function renderCustomerTable() {
-//   tableBody.innerHTML = ""; // Clear the existing table content
-//   const sortedCustomers = customers.sort((a, b) => b.id - a.id); // Sort customers by id in descending order
-
-//   sortedCustomers.forEach((customer) => {
-//     const row = document.createElement("tr");
-
-//     row.innerHTML = `
-//         <td>${customer.id}</td>
-//         <td>${customer.name}</td>
-//         <td>${customer.family}</td>
-//         <td>${customer.email}</td>
-//         <td>${customer.phone}</td>
-//       `;
-
-//     // Attach click event to the row
-//     row.addEventListener("click", () => {
-//       overlay.style.display = "flex";
-//       errorBox.classList.add("d-none");
-//       successMessage.classList.add("d-none");
-//       loadingSpinner.classList.add("d-none");
-//       removeBtn.style.display = "block";
-//       formElements.forEach((element) => (element.disabled = false));
-//       formHeaderTxt.innerHTML = customer.name + " " + customer.family;
-//       // Populate form fields
-//       document.querySelector("#id").value = customer.id;
-//       document.querySelector("#firstName").value = customer.name;
-//       document.querySelector("#family").value = customer.family;
-//       document.querySelector("#email").value = customer.email;
-//       document.querySelector("#phone").value = customer.phone;
-//       document.querySelector("#address").value = customer.address;
-//       document.querySelector("#birthday").value = formatDate(customer.birthday);
-//       addCus.style.display = "none";
-//       updateCus.style.display = "flex";
-//       document.getElementById("id").disabled = true;
-
-//       // Store selected customer ID
-//       selectedCustomerId = customer.id;
-//     });
-
-//     tableBody.appendChild(row);
-//   });
-// }
-
-// Date formatting function
 
 function renderCustomerTable() {
   tableBody.innerHTML = ""; // Clear the existing table content
@@ -339,13 +302,19 @@ function renderCustomerTable() {
 
   sortedCustomers.forEach((customer) => {
     const row = document.createElement("tr");
-
+    const currentYear = new Date().getFullYear();
+    const birthYear = parseInt(customer.birthday.split("/")[2], 10);
+    const age = currentYear - birthYear;
     row.innerHTML = `
         <td>${customer.id}</td>
         <td>${customer.name}</td>
         <td>${customer.family}</td>
         <td>${customer.email}</td>
         <td>${customer.phone}</td>
+        <td>${customer.birthday}</td>
+        <td>${age}</td>
+        <td>${customer.address}</td>
+
     `;
 
     // Attach click event to the row
@@ -385,14 +354,16 @@ function formatDate(date) {
 }
 
 // Function to add a new customer
-function addCustomer(id, name, family, email, phone) {
+function addCustomer(id, name, family, email, birthday, phone, address) {
   const newCustomer = {
     // id: customers.length + 1, // Assign the next available ID
     id: id,
     name: name,
     family: family,
     email: email,
+    birthday: birthday,
     phone: phone,
+    address: address,
   };
 
   customers.push(newCustomer); // Add the new customer to the list
