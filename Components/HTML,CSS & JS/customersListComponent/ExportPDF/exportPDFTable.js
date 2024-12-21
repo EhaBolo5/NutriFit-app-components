@@ -106,5 +106,5 @@ exportButton.addEventListener("click", () => {
   });
 
   // Save the PDF
-  doc.save("Customers_List.pdf");
+  doc.save("Customers List.pdf");
 });
