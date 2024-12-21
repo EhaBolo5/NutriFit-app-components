@@ -65,7 +65,7 @@
           <div id="overlay" class="overlay">
             <div class="form-container">
               <div id="customerFormHeader">
-                <h4>New Customer</h4>
+                <h4 id="formHeaderTxt">New Customer</h4>
                 <button
                   type="button"
                   class="btn-close"
@@ -94,6 +94,19 @@
               <form id="customerForm">
                 <div class="row">
                   <div class="col-md-6 mb-3">
+                    <label class="form-label">ID</label>
+                    <input
+                      type="text"
+                      id="id"
+                      class="form-control"
+                      placeholder="207654777"
+                      maxlength="9"
+                      pattern="^[0-9]{9}$"
+                      required
+                    />
+                    <div class="error" id="idError"></div>
+                  </div>
+                  <div class="col-md-6 mb-3">
                     <label class="form-label">First Name</label>
                     <input
                       type="text"
@@ -107,7 +120,7 @@
                     <div class="error" id="firstNameError"></div>
                   </div>
                   <div class="col-md-6 mb-3">
-                    <label class="form-label">Family</label>
+                    <label class="form-label">Last Name</label>
                     <input
                       type="text"
                       id="family"
@@ -231,7 +244,7 @@
                 <!-- Table Header -->
                 <thead class="primary shadow-sm">
                   <tr class="">
-                    <th class="text-dark">#</th>
+                    <th class="text-dark">#ID</th>
                     <th class="text-dark">Name</th>
                     <th class="text-dark">Family</th>
                     <th class="text-dark">Email</th>
@@ -274,7 +287,7 @@
     <!-- searchFunc.js -->
     <script src="searchFunc.js"></script>
     <!-- customerCRUD.js -->
-    <script src="customerCRUD.js"></script>
+    <script src="customerCRUD copy.js"></script>
     <!-- datePickerValidations.js -->
     <script src="datePickerValidations.js"></script>
     <!-- ExportPDF -->
