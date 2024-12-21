@@ -7,7 +7,7 @@ exportButton.addEventListener("click", () => {
 
   // Title for the PDF
   doc.setFontSize(18);
-  doc.text("Customer List", 14, 20);
+  doc.text("Customers List", 14, 20);
 
   // Get table headers
   const headers = [];
@@ -38,5 +38,5 @@ exportButton.addEventListener("click", () => {
   });
 
   // Save the PDF
-  doc.save("Customer List.pdf");
+  doc.save("Customers List.pdf");
 });
