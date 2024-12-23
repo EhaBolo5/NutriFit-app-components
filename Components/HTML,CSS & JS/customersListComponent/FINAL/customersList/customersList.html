@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers List</title>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="customersList.css" />
+    <!-- firebase -->
+    <script type="module" src="firebase.js"></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js"
+    ></script>
+    <!-- filterTable() on SearchInput -->
+    <script src="searchField.js"></script>
+    <!-- ExportPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script type="module" src="exportPDFTable.js"></script>
+    <script type="module" src="exportPDFCustomerTables.js"></script>
+  </head>
+  <body>
+    <div class="container container-fluid">
+      <!-- List Card -->
+      <div class="card border shadow-sm" id="customersListCard">
+        <!-- List Header Card -->
+        <div class="card" id="listHeaderCard">
+          <div id="header-addBTN-container">
+            <h3 class="text-dark">Customers</h3>
+            <button class="btn btn-primary border shadow-sm">
+              Add Customer
+            </button>
+          </div>
+          <div id="searchInput-container">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search"
+              id="searchInput"
+              onkeyup="filterTable()"
+            />
+          </div>
+        </div>
+        <!-- List Table Card -->
+        <div class="card" id="listTablecard">
+          <div
+            class="d-flex justify-content-center align-items-center loading-container d-none"
+          >
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div
+            id="alertMessageEmptyList"
+            class="alert alert-primary d-none"
+            role="alert"
+          >
+            There is no records in your list, start adding by clicking on the
+            'Add Customer' BTN.
+          </div>
+          <div
+            id="alertMessageNoRecordFound"
+            class="alert alert-warning d-none"
+            role="alert"
+          >
+            There is no records found for "<span id="searchString"></span>"
+          </div>
+          <div class="table-responsive d-none" id="responsinveTable">
+            <table class="table table-striped table-bordered table-hover">
+              <!-- Table Header -->
+              <thead class="primary shadow-sm">
+                <tr class="">
+                  <th class="text-dark">ID</th>
+                  <th class="text-dark">Name</th>
+                  <th class="text-dark">Family</th>
+                  <th class="text-dark">Email</th>
+                  <th class="text-dark">Phone</th>
+                  <th class="text-dark">Birthday</th>
+                  <th class="text-dark">Age</th>
+                  <th class="text-dark">Address</th>
+                </tr>
+              </thead>
+              <!-- Table Body -->
+              <tbody id="customersTableBody">
+                <!-- Rows will be inserted dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- List Footer -->
+        <div class="card p-2" id="listFooterCard">
+          <div id="exportBtnsContainer">
+            <div class="dropdown">
+              <button
+                class="btn btn-light border"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Export PDF
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                  <button
+                    class="dropdown-item"
+                    type="button"
+                    id="exportListBTN"
+                  >
+                    Export as LIST
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    type="button"
+                    id="exportTablesBTN"
+                  >
+                    Export as TABLES
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+body {
+  padding: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.container {
+  height: 95vh;
+}
+#customersListCard {
+  height: 100%;
+  padding: 3vh;
+}
+#listHeaderCard {
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0pc;
+}
+#header-addBTN-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn,
+#searchInput {
+  border-radius: 4px;
+}
+#searchInput {
+  width: 30%;
+}
+#searchInput-container {
+  width: 100%;
+}
+#listTablecard {
+  height: 75%;
+}
+#responsinveTable {
+  height: 100%;
+  text-align: center;
+}
+.alert {
+  text-align: center;
+}
+#listTablecard,
+#listFooterCard {
+  border: 0cap;
+}
+#exportBtnsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+#listToolbarCard {
+  border: 0cap;
+  height: 15%;
+}
+#listToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 990px) {
+  #listHeaderCard {
+    height: 15%;
+  }
+  #header-addBTN-container {
+    display: block;
+  }
+  .btn,
+  #searchInput {
+    width: 100%;
+    border-radius: 4px;
+  }
+  #searchInput,
+  #listTablecard {
+    margin-top: 0.5vh;
+  }
+  #listToolbar {
+    display: block;
+  }
+  #listFooterCard {
+    height: fit-content;
+  }
+  .dropdown {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    padding: 0vh;
+  }
+  .container {
+    height: 98vh;
+    width: 100%;
+  }
+  #customersListCard {
+    padding: 1vh;
+  }
+  #header-addBTN-container {
+    display: block;
+  }
+  .btn,
+  #searchInput {
+    width: 100%;
+    border-radius: 4px;
+  }
+  #searchInput {
+    margin-top: 0.8vh;
+  }
+}
