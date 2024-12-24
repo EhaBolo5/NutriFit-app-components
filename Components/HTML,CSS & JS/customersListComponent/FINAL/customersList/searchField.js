@@ -5,8 +5,7 @@ function filterTable() {
   const rows = table.getElementsByTagName("tr");
   const alertBox = document.getElementById("alertMessageNoRecordFound");
   const listTable = document.getElementById("responsinveTable");
-  const exportBtnContainer = document.getElementById("exportBtnsContainer");
-  //   const searchString = document.getElementById("searchString");
+  const exportBtnContainer = document.getElementById("listFooterCard");
   let noMatch = true;
 
   for (let i = 0; i < rows.length; i++) {

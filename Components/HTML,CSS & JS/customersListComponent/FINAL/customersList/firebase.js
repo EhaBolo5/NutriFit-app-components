@@ -25,6 +25,14 @@ const customersList = document.getElementById("customersTableBody");
 const listEmptyAlert = document.getElementById("alertMessageEmptyList");
 const listTable = document.getElementById("responsinveTable");
 const loadingSpinner = document.querySelector(".loading-container");
+let selectedCustomerId = null;
+const updateCustomerBTN = document.getElementById("updateCustomerBtn");
+const removeCustomerBTN = document.getElementById("removeCustomerBtn");
+const addCustomerForm = document.getElementById("customerForm");
+const addCustomerBTN = document.getElementById("addCustomerBtn");
+const formOverlay = document.getElementById("formOverlay");
+const formHeaderTxt = document.getElementById("formHeader-txt");
+const formElements = addCustomerForm.querySelectorAll("input, button");
 
 function calculateAge(birthday) {
   const birthDate = new Date(birthday);
@@ -68,6 +76,23 @@ async function renderCustomers() {
             <td>${calculateAge(customer.birthday)}</td>
             <td>${customer.address}</td>
           `;
+        row.addEventListener("click", () => {
+          selectedCustomerId = doc.id; // Correctly set the selected document ID
+          updateCustomerBTN.style.display = "flex";
+          removeCustomerBTN.style.display = "flex";
+          addCustomerBTN.style.display = "none";
+          formOverlay.style.display = "flex";
+          document.getElementById("id").disabled = true;
+          formHeaderTxt.innerHTML = `${customer.name} ${customer.family}`;
+          // inputSearch.disabled = false;
+          document.querySelector("#id").value = customer.id;
+          document.querySelector("#name").value = customer.name;
+          document.querySelector("#family").value = customer.family;
+          document.querySelector("#email").value = customer.email;
+          document.querySelector("#phone").value = customer.phone;
+          document.querySelector("#address").value = customer.address;
+          document.querySelector("#birthday").value = customer.birthday;
+        });
 
         customersList.appendChild(row);
       });

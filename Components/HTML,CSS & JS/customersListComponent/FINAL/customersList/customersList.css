@@ -25,6 +25,11 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .btn,
 #searchInput {
   border-radius: 4px;
@@ -36,7 +41,7 @@ body {
   width: 100%;
 }
 #listTablecard {
-  height: 75%;
+  height: 80%;
 }
 #responsinveTable {
   height: 100%;
@@ -56,15 +61,73 @@ body {
 }
 #listToolbarCard {
   border: 0cap;
-  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #listToolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
+#formOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  padding: 10px;
+  display: none;
+}
+#formCardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#formCard {
+  width: 80%;
+  height: fit-content;
+}
+td {
+  cursor: pointer;
+}
+.formCardHeader-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#formHeader-txt {
+  margin-bottom: 0px;
+}
+#newCustomerFormBTNs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 @media screen and (max-width: 990px) {
+  #newCustomerFormBTNs {
+    display: block;
+  }
+  #updateCustomerBtn,
+  #removeCustomerBtn #addCustomerBtn {
+    margin-top: 1vh;
+    width: 100%;
+    text-align: center;
+  }
+  #formCardContainer {
+    padding: 1px;
+  }
+  #formCard {
+    width: 100%;
+    height: fit-content;
+  }
   #listHeaderCard {
     height: 15%;
   }
