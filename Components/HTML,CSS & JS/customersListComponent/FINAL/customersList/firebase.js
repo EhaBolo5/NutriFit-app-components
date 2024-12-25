@@ -24,6 +24,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const customersList = document.getElementById("customersTableBody");
+const customerFormAlert = document.getElementById("alerrCustomerForm");
 const listEmptyAlert = document.getElementById("alertMessageEmptyList");
 const listTable = document.getElementById("responsinveTable");
 const loadingSpinner = document.querySelector(".loading-container");
@@ -200,6 +201,7 @@ const handleFormSubmit = async (event) => {
     disableFormFields();
 
     // Show success alert
+    customerFormAlert.innerText = "The record was added successfully.";
     alertCustomerForm.classList.remove("d-none");
 
     // Hide form after 3 seconds
@@ -223,6 +225,75 @@ const handleFormSubmit = async (event) => {
 
 // Attach event listener to the submit button
 addCustomerBtn.addEventListener("click", handleFormSubmit);
+
+const handleUpdateCustomer = async (event) => {
+  event.preventDefault();
+
+  // Reset error messages and hide success alert
+  document.getElementById("idError").innerText = "";
+  document.getElementById("emailError").innerText = "";
+  document.getElementById("phoneError").innerText = "";
+  customerFormAlert.classList.add("d-none"); // Hide the success alert initially
+
+  const id = document.getElementById("id").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const family = document.getElementById("family").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const birthday = document.getElementById("birthday").value.trim();
+  const address = document.getElementById("address").value.trim();
+
+  // Show spinner while processing
+  customerFormSpinner
+    .querySelector(".spinner-border")
+    .classList.remove("d-none");
+
+  try {
+    // Validate customer in Firestore to avoid duplicate IDs, emails, or phones
+
+    // Update the customer data in Firestore
+    const customerRef = doc(db, "Customers", selectedCustomerId); // Use selectedCustomerId for updating
+    await updateDoc(customerRef, {
+      id,
+      name,
+      family,
+      email,
+      phone,
+      birthday,
+      address,
+    });
+
+    console.log(`Customer updated successfully with ID: ${selectedCustomerId}`);
+    renderCustomers();
+
+    // Reset the form and hide overlay after successful update
+    customerForm.reset();
+    selectedCustomerId = null;
+
+    // Show success alert and add message
+    customerFormAlert.classList.remove("d-none");
+    customerFormAlert.innerText = "The record was updated successfully."; // Set the success message
+
+    // Hide the success alert after 2 seconds
+    setTimeout(() => {
+      customerFormAlert.classList.add("d-none");
+
+      // Close the form after 2 seconds
+      formOverlay.style.display = "none"; // Close the form (you may need to customize this for your form)
+    }, 2000);
+  } catch (error) {
+    console.error("Error updating customer:", error);
+    alert("An error occurred while updating the customer. Please try again.");
+  } finally {
+    // Hide the spinner after the update operation
+    customerFormSpinner
+      .querySelector(".spinner-border")
+      .classList.add("d-none");
+  }
+};
+
+// Attach event listener to the "Update Customer" button
+updateCustomerBTN.addEventListener("click", handleUpdateCustomer);
 
 // Remove Customer
 const removeCustomer = async () => {
