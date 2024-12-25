@@ -27,6 +27,7 @@ const checkFormFields = () => {
     (field) => field.value.trim() !== ""
   );
   addCustomerBTN.disabled = !allFieldsFilled;
+  updateCustomerBTN.disabled = !allFieldsFilled;
 
   formFields.forEach((field) => {
     field.addEventListener("input", checkFormFields);
