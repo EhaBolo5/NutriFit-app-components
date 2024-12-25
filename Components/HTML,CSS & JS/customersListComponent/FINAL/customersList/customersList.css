@@ -113,6 +113,7 @@ td {
 }
 .error {
   color: red;
+  margin-top: 0.5vh;
 }
 @media screen and (max-width: 990px) {
   #newCustomerFormBTNs {

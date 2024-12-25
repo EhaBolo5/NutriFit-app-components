@@ -155,6 +155,21 @@
                 ></button>
               </div>
               <div class="card-body">
+                <div
+                  id="alerrCustomerForm"
+                  class="alert alert-success d-none"
+                  role="alert"
+                >
+                  The customer was added successfully.
+                </div>
+                <div
+                  class="d-flex justify-content-center align-items-center loading-container p-2"
+                  id="customerFormSpinner"
+                >
+                  <div class="spinner-border text-primary d-none" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
                 <form id="customerForm">
                   <div class="row">
                     <div class="col-md-6 mb-3">
