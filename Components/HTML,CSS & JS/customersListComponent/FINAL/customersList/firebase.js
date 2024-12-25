@@ -374,13 +374,13 @@ const removeCustomer = async () => {
     setTimeout(() => {
       document.getElementById("successMessageOnRemove").classList.add("d-none");
       document.getElementById("importantNoticeAlert").classList.add("d-none");
+      formOverlay.style.display = "none";
     }, 2000);
 
     // Render the updated list of customers
     await renderCustomers();
 
     // Reset the form and the selected customer ID
-    formOverlay.style.display = "none";
     selectedCustomerId = null;
   } catch (error) {
     console.error("Error removing customer:", error);
