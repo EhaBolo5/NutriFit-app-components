@@ -218,7 +218,7 @@
                   </div>
                 </div>
                 <form id="customerForm">
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-6 mb-3">
                       <label class="form-label">ID</label>
                       <input
@@ -305,8 +305,93 @@
                       />
                       <div class="error" id="addressError"></div>
                     </div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">ID</label>
+                      <input
+                        type="text"
+                        id="id"
+                        class="form-control"
+                        placeholder="207654777"
+                        maxlength="9"
+                        pattern="^[0-9]{9}$"
+                        required
+                      />
+                      <div class="error" id="idError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">First Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        class="form-control"
+                        placeholder="John"
+                        maxlength="15"
+                        pattern="^[A-Za-z]+$"
+                        required
+                      />
+                      <div class="error" id="firstNameError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Last Name</label>
+                      <input
+                        type="text"
+                        id="family"
+                        class="form-control"
+                        placeholder="Doe"
+                        maxlength="15"
+                        pattern="^[A-Za-z]+$"
+                        required
+                      />
+                      <div class="error" id="familyError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="john@example.com"
+                        required
+                      />
+                      <div class="error" id="emailError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Phone</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        class="form-control"
+                        placeholder="+972-500000001"
+                        pattern="^\+972-[0-9]{9}$"
+                        required
+                      />
+                      <div class="error" id="phoneError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Birthday</label>
+                      <input
+                        type="date"
+                        id="birthday"
+                        class="form-control"
+                        required
+                      />
+                      <div class="error" id="birthdayError"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Address</label>
+                      <input
+                        type="text"
+                        id="address"
+                        class="form-control"
+                        placeholder="123 Main St"
+                        maxlength="30"
+                        required
+                      />
+                      <div class="error" id="addressError"></div>
+                    </div>
                   </div>
-
                   <div id="newCustomerFormBTNs">
                     <button
                       type="button"

@@ -84,6 +84,9 @@ async function renderCustomers() {
           `;
         row.addEventListener("click", () => {
           selectedCustomerId = doc.id; // Correctly set the selected document ID
+          document.getElementById("idError").innerText = "";
+          document.getElementById("phoneError").innerText = "";
+          document.getElementById("emailError").innerText = "";
           updateCustomerBTN.style.display = "flex";
           removeCustomerBTN.style.display = "flex";
           addCustomerBTN.style.display = "none";
