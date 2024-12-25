@@ -115,7 +115,19 @@ td {
   color: red;
   margin-top: 0.5vh;
 }
+#importnantNoticeBTNsContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 @media screen and (max-width: 990px) {
+  #importnantNoticeBTNsContainer {
+    display: block;
+  }
+  #confirmRemoveBtn {
+    margin-bottom: 1vh;
+  }
   #newCustomerFormBTNs {
     display: block;
   }

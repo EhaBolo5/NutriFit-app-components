@@ -31,7 +31,7 @@ const loadingSpinner = document.querySelector(".loading-container");
 let selectedCustomerId = null;
 const updateCustomerBTN = document.getElementById("updateCustomerBtn");
 const removeCustomerBTN = document.getElementById("removeCustomerBtn");
-const addCustomerForm = document.getElementById("customerForm");
+const confirmCustomerBTN = document.getElementById("confirmRemoveBtn");
 const addCustomerBTN = document.getElementById("addCustomerBtn");
 const formOverlay = document.getElementById("formOverlay");
 const formHeaderTxt = document.getElementById("formHeader-txt");
@@ -295,20 +295,104 @@ const handleUpdateCustomer = async (event) => {
 // Attach event listener to the "Update Customer" button
 updateCustomerBTN.addEventListener("click", handleUpdateCustomer);
 
-// Remove Customer
+// const removeCustomer = async () => {
+//   if (!selectedCustomerId) return;
+
+//   // Show loading spinner while removing
+//   document
+//     .getElementById("loadingSpinnerWrapperOnRemove")
+//     .classList.remove("d-none");
+//   document.getElementById("importantNoticeAlert").classList.remove("d-none");
+
+//   try {
+//     const customerRef = doc(db, "Customers", selectedCustomerId);
+//     await deleteDoc(customerRef);
+
+//     // After successful removal, show success message
+//     document
+//       .getElementById("successMessageOnRemove")
+//       .classList.remove("d-none");
+
+//     // Hide the success message after 2 seconds
+//     setTimeout(() => {
+//       document.getElementById("successMessageOnRemove").classList.add("d-none");
+//       // Hide the alert box after the success message is hidden
+//       document.getElementById("importantNoticeAlert").classList.add("d-none");
+//     }, 3000);
+
+//     // Render the updated list of customers
+//     await renderCustomers();
+
+//     // Reset the form and the selected customer ID
+//     formOverlay.style.display = "none";
+//     selectedCustomerId = null;
+//   } catch (error) {
+//     console.error("Error removing customer:", error);
+//     // Optionally, you can handle errors by showing an error message in the alert box
+//   } finally {
+//     // Hide the spinner after the operation is complete
+//     document
+//       .getElementById("loadingSpinnerWrapperOnRemove")
+//       .classList.add("d-none");
+//   }
+// };
+
+// confirmCustomerBTN.addEventListener("click", removeCustomer);
+
 const removeCustomer = async () => {
   if (!selectedCustomerId) return;
+
+  // Change card header to "Removing"
+  const cardHeader = document.querySelector(
+    "#importantNoticeAlert .card-header h3"
+  );
+  cardHeader.textContent = "Removing";
+
+  // Replace text and buttons with the spinner
+  document.querySelector(".card-body p").classList.add("d-none"); // Hide the text
+  document
+    .getElementById("importnantNoticeBTNsContainer")
+    .classList.add("d-none"); // Hide the buttons
+  document
+    .getElementById("loadingSpinnerWrapperOnRemove")
+    .classList.remove("d-none"); // Show the spinner
+
+  // Show the alert box if it's not already visible
+  document.getElementById("importantNoticeAlert").classList.remove("d-none");
+
   try {
     const customerRef = doc(db, "Customers", selectedCustomerId);
     await deleteDoc(customerRef);
+
+    // After successful removal, change the header and show success message
+    cardHeader.textContent = "Removed";
+    document
+      .getElementById("successMessageOnRemove")
+      .classList.remove("d-none");
+
+    // Hide the success message and alert box after 2 seconds
+    setTimeout(() => {
+      document.getElementById("successMessageOnRemove").classList.add("d-none");
+      document.getElementById("importantNoticeAlert").classList.add("d-none");
+    }, 2000);
+
+    // Render the updated list of customers
     await renderCustomers();
+
+    // Reset the form and the selected customer ID
     formOverlay.style.display = "none";
     selectedCustomerId = null;
   } catch (error) {
     console.error("Error removing customer:", error);
+    // Optionally, you can handle errors by showing an error message in the alert box
+  } finally {
+    // Hide the spinner after the operation is complete
+    document
+      .getElementById("loadingSpinnerWrapperOnRemove")
+      .classList.add("d-none");
   }
 };
 
-removeCustomerBTN.addEventListener("click", removeCustomer);
+confirmCustomerBTN.addEventListener("click", removeCustomer);
 
 renderCustomers();

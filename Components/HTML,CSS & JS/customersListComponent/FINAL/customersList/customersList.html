@@ -143,6 +143,52 @@
         </div>
         <!-- Form Overlay -->
 
+        <div
+          id="importantNoticeAlert"
+          class="position-fixed top-50 start-50 translate-middle p-3 d-none"
+          style="max-width: 90%; width: 30rem; z-index: 1055"
+        >
+          <div class="card text-center shadow">
+            <!-- Card Header -->
+            <div class="card-header bg-warning text-white">
+              <h3 class="text-dark mb-0">Important Notice</h3>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <div id="loadingSpinnerWrapperOnRemove" class="d-none">
+                <div
+                  id="loadingSpinneOnRemove"
+                  class="spinner-border text-warning"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <div>
+                <div
+                  id="successMessageOnRemove"
+                  class="alert alert-success d-none"
+                  role="alert"
+                >
+                  <strong>The record was removed successfully!</strong>
+                </div>
+              </div>
+              <p class="card-text">
+                Removing this record is
+                <strong>permanent and cannot be undone</strong>. Do you want to
+                proceed?
+              </p>
+              <div id="importnantNoticeBTNsContainer">
+                <button class="btn btn-warning me-2" id="confirmRemoveBtn">
+                  Proceed
+                </button>
+                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="formOverlay">
           <div class="container" id="formCardContainer">
             <div class="card shadow-sm" id="formCard">
@@ -276,7 +322,11 @@
                     >
                       Add Customer
                     </button>
-                    <button id="updateCustomerBtn" class="btn btn-primary">
+                    <button
+                      id="updateCustomerBtn"
+                      class="btn btn-primary"
+                      disabled
+                    >
                       Update Customer
                     </button>
                   </div>
