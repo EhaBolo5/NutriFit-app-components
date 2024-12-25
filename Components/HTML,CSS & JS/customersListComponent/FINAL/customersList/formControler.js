@@ -7,6 +7,7 @@ const addCustomerBTN = document.getElementById("addCustomerBtn");
 const formHeaderTxt = document.getElementById("formHeader-txt");
 const formOverlay = document.getElementById("formOverlay");
 const form = document.getElementById("customerForm");
+const formFields = form.querySelectorAll("input[required]");
 
 showFormBtn.addEventListener("click", () => {
   formOverlay.style.display = "block";
@@ -20,3 +21,16 @@ showFormBtn.addEventListener("click", () => {
 hideFormBtn.addEventListener("click", () => {
   formOverlay.style.display = "none";
 });
+
+const checkFormFields = () => {
+  const allFieldsFilled = Array.from(formFields).every(
+    (field) => field.value.trim() !== ""
+  );
+  addCustomerBTN.disabled = !allFieldsFilled;
+
+  formFields.forEach((field) => {
+    field.addEventListener("input", checkFormFields);
+  });
+};
+
+checkFormFields();

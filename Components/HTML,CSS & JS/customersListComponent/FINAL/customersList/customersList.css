@@ -111,6 +111,9 @@ td {
   align-items: center;
   justify-content: flex-end;
 }
+.error {
+  color: red;
+}
 @media screen and (max-width: 990px) {
   #newCustomerFormBTNs {
     display: block;
