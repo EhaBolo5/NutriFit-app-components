@@ -34,7 +34,10 @@ const addCustomerForm = document.getElementById("customerForm");
 const addCustomerBTN = document.getElementById("addCustomerBtn");
 const formOverlay = document.getElementById("formOverlay");
 const formHeaderTxt = document.getElementById("formHeader-txt");
-const formElements = addCustomerForm.querySelectorAll("input, button");
+const customerForm = document.getElementById("customerForm");
+const addCustomerBtn = document.getElementById("addCustomerBtn");
+const alertCustomerForm = document.getElementById("alerrCustomerForm");
+const customerFormSpinner = document.getElementById("customerFormSpinner");
 
 function calculateAge(birthday) {
   const birthDate = new Date(birthday);
@@ -85,6 +88,8 @@ async function renderCustomers() {
           addCustomerBTN.style.display = "none";
           formOverlay.style.display = "flex";
           document.getElementById("id").disabled = true;
+          document.getElementById("phone").disabled = true;
+          document.getElementById("email").disabled = true;
           formHeaderTxt.innerHTML = `${customer.name} ${customer.family}`;
           // inputSearch.disabled = false;
           document.querySelector("#id").value = customer.id;
@@ -105,94 +110,7 @@ async function renderCustomers() {
     loadingSpinner.classList.add("d-none");
   }
 }
-
-// Form and Button References
-// const customerForm = document.getElementById("customerForm");
-// const addCustomerBtn = document.getElementById("addCustomerBtn");
-
-// // Function to check for duplicate ID, Email, or Phone in Firestore
-// const validateCustomer = async (id, email, phone) => {
-//   const customersRef = collection(db, "Customers");
-
-//   // Check for duplicate ID
-//   const idQuery = query(customersRef, where("id", "==", id));
-//   const emailQuery = query(customersRef, where("email", "==", email));
-//   const phoneQuery = query(customersRef, where("phone", "==", phone));
-
-//   const [idSnapshot, emailSnapshot, phoneSnapshot] = await Promise.all([
-//     getDocs(idQuery),
-//     getDocs(emailQuery),
-//     getDocs(phoneQuery),
-//   ]);
-
-//   return {
-//     idExists: !idSnapshot.empty,
-//     emailExists: !emailSnapshot.empty,
-//     phoneExists: !phoneSnapshot.empty,
-//   };
-// };
-
-// // Function to handle form submission
-// const handleFormSubmit = async (event) => {
-//   event.preventDefault();
-//   document.getElementById("idError").innerText = "";
-//   document.getElementById("emailError").innerText = "";
-//   document.getElementById("phoneError").innerText = "";
-//   const id = document.getElementById("id").value.trim();
-//   const name = document.getElementById("name").value.trim();
-//   const family = document.getElementById("family").value.trim();
-//   const email = document.getElementById("email").value.trim();
-//   const phone = document.getElementById("phone").value.trim();
-//   const birthday = document.getElementById("birthday").value.trim();
-//   const address = document.getElementById("address").value.trim();
-
-//   // Validate customer in Firestore
-//   try {
-//     const { idExists, emailExists, phoneExists } = await validateCustomer(
-//       id,
-//       email,
-//       phone
-//     );
-
-//     if (idExists) {
-//       document.getElementById("idError").innerText =
-//         "A customer with this ID already exists.";
-//       return;
-//     }
-//     if (emailExists) {
-//       document.getElementById("emailError").innerText =
-//         "A customer with this Email already exists.";
-//       return;
-//     }
-//     if (phoneExists) {
-//       document.getElementById("phoneError").innerText =
-//         "A customer with this Phone Number already exists.";
-//       return;
-//     }
-
-//     // Add new customer
-//     const newCustomer = { id, name, family, email, phone, birthday, address };
-//     const docRef = await addDoc(collection(db, "Customers"), newCustomer);
-//     console.log(`Customer added successfully with ID: ${docRef.id}`);
-//     renderCustomers();
-//     // Reset the form
-//     customerForm.reset();
-//   } catch (error) {
-//     console.error("Error adding customer:", error);
-//     alert("An error occurred while adding the customer. Please try again.");
-//   }
-// };
-
-// // Attach event listener to the submit button
-// addCustomerBtn.addEventListener("click", handleFormSubmit);
-
-const customerForm = document.getElementById("customerForm");
-const addCustomerBtn = document.getElementById("addCustomerBtn");
-const alertCustomerForm = document.getElementById("alerrCustomerForm");
-const customerFormSpinner = document.getElementById("customerFormSpinner");
-// const formOverlay = document.getElementById("formOverlay");
-
-// Function to check for duplicate ID, Email, or Phone in Firestore
+// on Add Customer
 const validateCustomer = async (id, email, phone) => {
   const customersRef = collection(db, "Customers");
 
@@ -305,5 +223,21 @@ const handleFormSubmit = async (event) => {
 
 // Attach event listener to the submit button
 addCustomerBtn.addEventListener("click", handleFormSubmit);
+
+// Remove Customer
+const removeCustomer = async () => {
+  if (!selectedCustomerId) return;
+  try {
+    const customerRef = doc(db, "Customers", selectedCustomerId);
+    await deleteDoc(customerRef);
+    await renderCustomers();
+    formOverlay.style.display = "none";
+    selectedCustomerId = null;
+  } catch (error) {
+    console.error("Error removing customer:", error);
+  }
+};
+
+removeCustomerBTN.addEventListener("click", removeCustomer);
 
 renderCustomers();

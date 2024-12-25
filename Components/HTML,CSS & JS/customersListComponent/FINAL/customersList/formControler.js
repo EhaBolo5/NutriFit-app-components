@@ -16,6 +16,8 @@ showFormBtn.addEventListener("click", () => {
   addCustomerBTN.style.display = "flex";
   formHeaderTxt.innerText = "New Customer";
   document.getElementById("id").disabled = false;
+  document.getElementById("phone").disabled = false;
+  document.getElementById("email").disabled = false;
   form.reset();
 });
 hideFormBtn.addEventListener("click", () => {
