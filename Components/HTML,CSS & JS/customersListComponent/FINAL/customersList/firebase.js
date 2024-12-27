@@ -54,6 +54,7 @@ function calculateAge(birthday) {
   return age;
 }
 
+
 async function renderCustomers() {
   try {
     loadingSpinner.classList.remove("d-none");
@@ -68,8 +69,17 @@ async function renderCustomers() {
       listEmptyAlert.classList.add("d-none");
       listTable.classList.remove("d-none");
       document.getElementById("searchInput").disabled = false;
+
+      // Temporarily store documents in an array
+      const customersArray = [];
       querySnapshot.forEach((doc) => {
-        const customer = doc.data();
+        customersArray.push({ id: doc.id, data: doc.data() });
+      });
+
+      // Reverse the array
+      customersArray.reverse();
+
+      customersArray.forEach(({ id, data: customer }) => {
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -83,7 +93,7 @@ async function renderCustomers() {
             <td>${customer.address}</td>
           `;
         row.addEventListener("click", () => {
-          selectedCustomerId = doc.id; // Correctly set the selected document ID
+          selectedCustomerId = id; // Correctly set the selected document ID
           document.getElementById("idError").innerText = "";
           document.getElementById("phoneError").innerText = "";
           document.getElementById("emailError").innerText = "";
@@ -113,7 +123,7 @@ async function renderCustomers() {
     loadingSpinner.classList.add("d-none");
   }
 }
-// on Add Customer
+
 const validateCustomer = async (id, email, phone) => {
   const customersRef = collection(db, "Customers");
 
@@ -135,15 +145,7 @@ const validateCustomer = async (id, email, phone) => {
   };
 };
 
-// Function to disable all form fields
-const disableFormFields = (disable = true) => {
-  const formElements = customerForm.querySelectorAll("input, button");
-  formElements.forEach((element) => {
-    element.disabled = disable;
-  });
-};
-
-// Function to handle form submission
+// Handle the form submit
 const handleFormSubmit = async (event) => {
   event.preventDefault();
 
@@ -151,6 +153,10 @@ const handleFormSubmit = async (event) => {
   document.getElementById("idError").innerText = "";
   document.getElementById("emailError").innerText = "";
   document.getElementById("phoneError").innerText = "";
+  document.getElementById("nameError").innerText = "";
+  document.getElementById("familyError").innerText = "";
+  document.getElementById("addressError").innerText = "";
+  document.getElementById("birthdayError").innerText = "";
   alertCustomerForm.classList.add("d-none");
 
   const id = document.getElementById("id").value.trim();
@@ -160,6 +166,46 @@ const handleFormSubmit = async (event) => {
   const phone = document.getElementById("phone").value.trim();
   const birthday = document.getElementById("birthday").value.trim();
   const address = document.getElementById("address").value.trim();
+
+  // Validate form fields locally
+  let hasError = false;
+
+  if (!/^[0-9]{9}$/.test(id)) {
+    document.getElementById("idError").innerText =
+      "ID must be exactly 9 digits.";
+    hasError = true;
+  }
+  if (!/^[A-Za-z]{2,15}$/.test(name)) {
+    document.getElementById("nameError").innerText =
+      "First Name must be 2-15 letters with no spaces.";
+    hasError = true;
+  }
+  if (!/^[A-Za-z]{2,15}$/.test(family)) {
+    document.getElementById("familyError").innerText =
+      "Last Name must be 2-15 letters with no spaces.";
+    hasError = true;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById("emailError").innerText = "Email is invalid.";
+    hasError = true;
+  }
+  if (!/^\+972-[0-9]{9}$/.test(phone)) {
+    document.getElementById("phoneError").innerText =
+      "Phone number must be in the format +972-xxxxxxxxx.";
+    hasError = true;
+  }
+  if (address.length > 30) {
+    document.getElementById("addressError").innerText =
+      "Address must not exceed 30 characters.";
+    hasError = true;
+  }
+  if (!birthday) {
+    document.getElementById("birthdayError").innerText =
+      "Birthday is required.";
+    hasError = true;
+  }
+
+  if (hasError) return; // Stop if any validation error exists
 
   // Show spinner
   customerFormSpinner
@@ -223,8 +269,18 @@ const handleFormSubmit = async (event) => {
   }
 };
 
-// Attach event listener to the submit button
-addCustomerBtn.addEventListener("click", handleFormSubmit);
+// Attach the form handler
+document
+  .getElementById("customerForm")
+  .addEventListener("submit", handleFormSubmit);
+
+// Function to disable all form fields
+const disableFormFields = (disable = true) => {
+  const formElements = customerForm.querySelectorAll("input, button");
+  formElements.forEach((element) => {
+    element.disabled = disable;
+  });
+};
 
 const handleUpdateCustomer = async (event) => {
   event.preventDefault();
@@ -233,25 +289,49 @@ const handleUpdateCustomer = async (event) => {
   document.getElementById("idError").innerText = "";
   document.getElementById("emailError").innerText = "";
   document.getElementById("phoneError").innerText = "";
-  customerFormAlert.classList.add("d-none"); // Hide the success alert initially
-
-  const id = document.getElementById("id").value.trim();
+  document.getElementById("nameError").innerText = "";
+  document.getElementById("familyError").innerText = "";
+  document.getElementById("addressError").innerText = "";
+  document.getElementById("birthdayError").innerText = "";
+  customerFormAlert.classList.add("d-none");
   const name = document.getElementById("name").value.trim();
   const family = document.getElementById("family").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
+
   const birthday = document.getElementById("birthday").value.trim();
   const address = document.getElementById("address").value.trim();
+
+  // Local field validation
+  let hasError = false;
+
+  if (!/^[A-Za-z]{2,15}$/.test(name)) {
+    document.getElementById("nameError").innerText =
+      "First Name must be 2-15 letters with no spaces.";
+    hasError = true;
+  }
+  if (!/^[A-Za-z]{2,15}$/.test(family)) {
+    document.getElementById("familyError").innerText =
+      "Last Name must be 2-15 letters with no spaces.";
+    hasError = true;
+  }
+  if (address.length > 30) {
+    document.getElementById("addressError").innerText =
+      "Address must not exceed 30 characters.";
+    hasError = true;
+  }
+  if (!birthday) {
+    document.getElementById("birthdayError").innerText =
+      "Birthday is required.";
+    hasError = true;
+  }
+
+  if (hasError) return; // Stop if there are validation errors
 
   // Show spinner while processing
   customerFormSpinner
     .querySelector(".spinner-border")
     .classList.remove("d-none");
   try {
-    // Validate customer in Firestore to avoid duplicate IDs, emails, or phones
-
-    // Update the customer data in Firestore
-    const customerRef = doc(db, "Customers", selectedCustomerId); // Use selectedCustomerId for updating
+    const customerRef = doc(db, "Customers", selectedCustomerId);
     await updateDoc(customerRef, {
       name,
       family,
@@ -268,14 +348,14 @@ const handleUpdateCustomer = async (event) => {
 
     // Show success alert and add message
     customerFormAlert.classList.remove("d-none");
-    customerFormAlert.innerText = "The record was updated successfully."; // Set the success message
+    customerFormAlert.innerText = "The record was updated successfully.";
 
     // Hide the success alert after 2 seconds
     setTimeout(() => {
       customerFormAlert.classList.add("d-none");
 
       // Close the form after 2 seconds
-      formOverlay.style.display = "none"; // Close the form (you may need to customize this for your form)
+      formOverlay.style.display = "none";
     }, 2000);
   } catch (error) {
     console.error("Error updating customer:", error);
@@ -291,49 +371,8 @@ const handleUpdateCustomer = async (event) => {
 // Attach event listener to the "Update Customer" button
 updateCustomerBTN.addEventListener("click", handleUpdateCustomer);
 
-// const removeCustomer = async () => {
-//   if (!selectedCustomerId) return;
-
-//   // Show loading spinner while removing
-//   document
-//     .getElementById("loadingSpinnerWrapperOnRemove")
-//     .classList.remove("d-none");
-//   document.getElementById("importantNoticeAlert").classList.remove("d-none");
-
-//   try {
-//     const customerRef = doc(db, "Customers", selectedCustomerId);
-//     await deleteDoc(customerRef);
-
-//     // After successful removal, show success message
-//     document
-//       .getElementById("successMessageOnRemove")
-//       .classList.remove("d-none");
-
-//     // Hide the success message after 2 seconds
-//     setTimeout(() => {
-//       document.getElementById("successMessageOnRemove").classList.add("d-none");
-//       // Hide the alert box after the success message is hidden
-//       document.getElementById("importantNoticeAlert").classList.add("d-none");
-//     }, 3000);
-
-//     // Render the updated list of customers
-//     await renderCustomers();
-
-//     // Reset the form and the selected customer ID
-//     formOverlay.style.display = "none";
-//     selectedCustomerId = null;
-//   } catch (error) {
-//     console.error("Error removing customer:", error);
-//     // Optionally, you can handle errors by showing an error message in the alert box
-//   } finally {
-//     // Hide the spinner after the operation is complete
-//     document
-//       .getElementById("loadingSpinnerWrapperOnRemove")
-//       .classList.add("d-none");
-//   }
-// };
-
-// confirmCustomerBTN.addEventListener("click", removeCustomer);
+// Attach event listener to the submit button
+addCustomerBtn.addEventListener("click", handleFormSubmit);
 
 const removeCustomer = async () => {
   if (!selectedCustomerId) return;
