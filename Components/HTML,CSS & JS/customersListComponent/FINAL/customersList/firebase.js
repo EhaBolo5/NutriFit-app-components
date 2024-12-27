@@ -95,7 +95,6 @@ async function renderCustomers() {
           document.getElementById("phone").disabled = true;
           document.getElementById("email").disabled = true;
           formHeaderTxt.innerHTML = `${customer.name} ${customer.family}`;
-          // inputSearch.disabled = false;
           document.querySelector("#id").value = customer.id;
           document.querySelector("#name").value = customer.name;
           document.querySelector("#family").value = customer.family;
@@ -210,9 +209,7 @@ const handleFormSubmit = async (event) => {
     // Hide form after 3 seconds
     setTimeout(() => {
       alertCustomerForm.classList.add("d-none");
-      // formOverlay.classList.add("d-none");
       formOverlay.style.display = "none";
-
       disableFormFields(false); // Enable form fields for future use
     }, 3000);
   } catch (error) {
@@ -250,18 +247,14 @@ const handleUpdateCustomer = async (event) => {
   customerFormSpinner
     .querySelector(".spinner-border")
     .classList.remove("d-none");
-
   try {
     // Validate customer in Firestore to avoid duplicate IDs, emails, or phones
 
     // Update the customer data in Firestore
     const customerRef = doc(db, "Customers", selectedCustomerId); // Use selectedCustomerId for updating
     await updateDoc(customerRef, {
-      id,
       name,
       family,
-      email,
-      phone,
       birthday,
       address,
     });
